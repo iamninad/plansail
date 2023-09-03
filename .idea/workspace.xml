@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76f26447-7182-4608-9a87-47deab048fb8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/plansail-gui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/postcss.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/src/pages/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/src/pages/Home/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/src/shared/Navbar/Navbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/src/shared/Navbar/Navbar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plansail-gui/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/plansail-gui/tailwind.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2UsIdq04Lj9i64MNaWiZgak59r3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76f26447-7182-4608-9a87-47deab048fb8" name="Changes" comment="" />
+      <created>1693721952242</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693721952242</updated>
+    </task>
+    <servers />
+  </component>
+</project>

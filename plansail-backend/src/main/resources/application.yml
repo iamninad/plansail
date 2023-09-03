@@ -1,0 +1,4 @@
+server:
+  port: 9000
+  error:
+    includeMessage: always
