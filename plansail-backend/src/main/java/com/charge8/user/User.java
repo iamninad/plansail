@@ -9,38 +9,50 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String username;
-    private String passwordHash;
+    private String password_hash;
     private String email;
 
-    public int getId() {
-        return userId;
+
+    public int getUserId() {
+        return this.userId;
     }
 
-    public void setId(int id) {
-        this.userId = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return passwordHash;
+    public String getPassword_hash() {
+        return this.password_hash;
     }
 
-    public void setPassword(String password) {
-        this.passwordHash = password;
+    public void setPassword_hash(String password_hash) {
+        this.password_hash = password_hash;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " userId='" + getUserId() + "'" +
+            ", username='" + getUsername() + "'" +
+            ", password_hash='" + getPassword_hash() + "'" +
+            ", email='" + getEmail() + "'" +
+            "}";
+    }
+    
 }

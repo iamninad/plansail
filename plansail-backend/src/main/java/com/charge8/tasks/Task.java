@@ -3,36 +3,35 @@ package com.charge8.tasks;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int TaskID;
-    private String Title;
+    private int task_id;
+    private String title;
     private String description;
-    private int BoardID;
-    private int UserID;
-    private String Status;
-    private String Priority;
-    private LocalDate DueDate;
+    private int board_id;
+    private int user_id;
+    private String status;
+    private String priority;
+    private LocalDate due_date;
 
     public int getTaskID() {
-        return TaskID;
+        return task_id;
     }
 
     public void setTaskID(int taskID) {
-        TaskID = taskID;
+        task_id = taskID;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public void setTitle(String Title) {
+        title = Title;
     }
 
     public String getDescription() {
@@ -44,42 +43,57 @@ public class Task {
     }
 
     public int getBoardID() {
-        return BoardID;
+        return board_id;
     }
 
     public void setBoardID(int boardID) {
-        BoardID = boardID;
+        board_id = boardID;
     }
 
     public int getUserID() {
-        return UserID;
+        return user_id;
     }
 
     public void setUserID(int userID) {
-        UserID = userID;
+        user_id = userID;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setStatus(String Status) {
+        status = Status;
     }
 
     public String getPriority() {
-        return Priority;
+        return priority;
     }
 
-    public void setPriority(String priority) {
-        Priority = priority;
+    public void setPriority(String Priority) {
+        priority = Priority;
     }
 
     public LocalDate getDueDate() {
-        return DueDate;
+        return due_date;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        DueDate = dueDate;
+    public void setDueDate(LocalDate DueDate) {
+        due_date = DueDate;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " task_id='" + getTaskID() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", board_id='" + getBoardID() + "'" +
+            ", user_id='" + getUserID() + "'" +
+            ", status='" + getStatus() + "'" +
+            ", priority='" + getPriority() + "'" +
+            ", due_date='" + getDueDate() + "'" +
+            "}";
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.charge8.tasks;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 public class TaskController {
     private final TaskRepository taskRepository;
 
-    @Autowired
     public TaskController(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }

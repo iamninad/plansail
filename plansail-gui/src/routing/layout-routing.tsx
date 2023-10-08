@@ -21,7 +21,7 @@ const LayoutRouting = () => {
           element={
             <>
               <Login />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -30,7 +30,7 @@ const LayoutRouting = () => {
           element={
             <>
               <Register />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
@@ -39,7 +39,7 @@ const LayoutRouting = () => {
           element={
             <>
               <ForgetPassword />
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />

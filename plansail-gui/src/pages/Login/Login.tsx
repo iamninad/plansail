@@ -1,9 +1,52 @@
 import "./Login.css";
 import Logo from "../../assets/project.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FormValidator } from "../../shared/FormValidator";
+import UserService from "../../services/user.service";
+import Swal from "sweetalert2";
+import { SessionService } from "../../services/session.service";
+import { decodeToken } from "react-jwt";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [, setFormErrors] = useState({
+    password: "",
+  });
+
   const navigate = useNavigate();
+
+  const Login = async (event: any) => {
+    event.preventDefault();
+    // Validate the form using the FormValidator
+    const errors = FormValidator.validateLoginForm(password);
+
+    // Check if there are any errors
+    const hasErrors = Object.values(errors).some((error) => error !== "");
+
+    if (!hasErrors) {
+      try {
+        const resp = await UserService.validateUser({
+          "email": email,
+          "password": password
+        });
+        const decodedToken: any = decodeToken(resp)
+        // TODO: SAVE TO SESSION
+        SessionService.login(decodedToken.username, resp, decodedToken.exp.toString());
+        navigate("/dashboard")
+      } catch (error: any) {
+        Swal.fire({
+          title:error.response.data.toString(),
+          text: "Please check email and password",
+          icon: 'error'
+        })
+        console.log("Error finding user:", error);
+      }
+    } else {
+      setFormErrors(errors);
+    }
+  };
 
   return (
     <div className="login-container">
@@ -21,7 +64,7 @@ const Login = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" onSubmit={(e)=>Login(e)}>
                 <div>
                   <label
                     htmlFor="email"
@@ -36,6 +79,7 @@ const Login = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required={true}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -52,6 +96,7 @@ const Login = () => {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required={true}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="flex items-center justify-between">
@@ -76,8 +121,8 @@ const Login = () => {
                   </div>
                   <a
                     // href="#"
-                    role={'button'}
-                    onClick={()=>navigate("/forgetPass")}
+                    role={"button"}
+                    onClick={() => navigate("/forgetPass")}
                     className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Forgot password?

@@ -1,6 +1,5 @@
 package com.charge8.teams;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,15 +9,8 @@ import java.util.List;
 public class TeamController {
     private final TeamRepository teamRepository;
 
-    @Autowired
     public TeamController(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
-    }
-
-    // GET all teams
-    @GetMapping
-    public List<Team> getAllTeams() {
-        return teamRepository.findAll();
     }
 
     // GET team by ID
@@ -31,5 +23,10 @@ public class TeamController {
     @PostMapping
     public Team createTeam(@RequestBody Team team) {
         return teamRepository.save(team);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Team> getUserTeams(@PathVariable Long userId) {
+        return teamRepository.findByUserId(userId);
     }
 }

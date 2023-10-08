@@ -1,8 +1,57 @@
 import "./Register.css";
 import Logo from "../../assets/project.svg";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { FormValidator } from "../../shared/FormValidator";
+import UserService from "../../services/user.service";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const [username, setUsername] = useState("");
+  const [formErrors, setFormErrors] = useState({
+    username: "",
+    password: "",
+    confPassword: "",
+  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+
+  const Register = async (event: any) => {
+    event.preventDefault();
+    // Validate the form using the FormValidator
+    const errors = FormValidator.validateRegForm(
+      username,
+      password,
+      confPassword
+    );
+
+    // Check if there are any errors
+    const hasErrors = Object.values(errors).some((error) => error !== "");
+
+    if (!hasErrors) {
+      try {
+        const createdUser = await UserService.createUser({
+          username: username,
+          email: email,
+          password_hash: password.toString(),
+        });
+        console.log("User created:", createdUser);
+        Swal.fire({
+          title: "Registration Success\nYou can login now...",
+          confirmButtonText: "Login",
+          icon: "success",
+        }).then(() => {
+          navigate("/login");
+        });
+      } catch (error) {
+        console.log("Error creating user:", error);
+      }
+    } else {
+      setFormErrors(errors);
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <div className="register-container">
@@ -20,7 +69,30 @@ const Register = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Create and account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={(e) => Register(e)}
+              >
+                <div>
+                  <label
+                    htmlFor="username"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Your username
+                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="gooduser0101"
+                    required={true}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                    {formErrors?.username}
+                  </span>
+                </div>
                 <div>
                   <label
                     htmlFor="email"
@@ -35,6 +107,7 @@ const Register = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required={true}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -51,7 +124,11 @@ const Register = () => {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required={true}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
+                  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                    {formErrors?.password}
+                  </span>
                 </div>
                 <div>
                   <label
@@ -61,13 +138,17 @@ const Register = () => {
                     Confirm password
                   </label>
                   <input
-                    type="confirm-password"
+                    type="password"
                     name="confirm-password"
                     id="confirm-password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required={true}
+                    onChange={(e) => setConfPassword(e.target.value)}
                   />
+                  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                    {formErrors?.confPassword}
+                  </span>
                 </div>
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
